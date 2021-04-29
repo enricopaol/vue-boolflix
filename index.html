@@ -31,8 +31,8 @@
                 <!-- Search Bar -->
                 <div class="search-bar">
                     <label for="search">Ricerca: </label>
-                    <input id="search" type="text" placeholder="Cerca..." v-model="searchQuery">
-                    <button class="search-button" @click="searchMovie()">Cerca</button>
+                    <input id="search" type="text" placeholder="Cerca..." v-model="searchQuery" @keyup.enter="searchMovie(); searchTvShows()">
+                    <button class="search-button" @click="searchMovie(); searchTvShows()">Cerca</button>
                 </div>
 
             </div>            
@@ -41,16 +41,41 @@
 
         <!-- MAIN -->
         <main>
-            <h1>Film Risultati</h1>
-            <ul>
-                <li v-for="movie in resultMovies">
-                    Titolo: {{movie.title}} <br>
-                    Titolo Originale: {{movie.original_title}} <br>
-                    Lingua: {{movie.original_language}} <br>
-                    Voto: {{movie.vote_average}}
-                    <hr>
-                </li>
-            </ul>
+
+            <!-- Section Movies -->
+            <section class="movies-section">
+                <h2>Film Risultati</h2>       
+                <ul>
+                    <li v-for="movie in resultMovies">
+                        Titolo: {{movie.title}} <br>
+                        Titolo Originale: {{movie.original_title}} <br>
+                        Lingua: <img class="flag-img" :src="flagImages[movie.original_language]" alt=""> {{movie.original_language}} <br>
+                        Voto: {{movie.vote_average}} <br>
+                        
+                        <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="">
+                        <hr>
+                    </li>
+                </ul>
+            </section>
+            <!-- End Section Movies -->
+
+            <!-- Tv Shows Section -->
+            <section class="tv-shows-section">
+                <h2>Serie Tv Risultati</h2>       
+                <ul>
+                    <li v-for="show in resultTvShows">
+                        Titolo: {{show.name}} <br>
+                        Titolo Originale: {{show.original_name}} <br>
+                        Lingua: <img class="flag-img" :src="flagImages[show.original_language]" alt=""> {{show.original_language}} <br>
+                        Voto: {{show.vote_average}} <br>
+                        
+                        <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">
+                        <hr>
+                    </li>
+                </ul>
+            </section>
+            <!-- End Tv Shows Section -->
+            
         </main>
         <!-- FINE MAIN -->
         

@@ -15,6 +15,11 @@ body {
     margin: auto;
 }
 
+.flag-img {
+    width: 16px;
+    height: 12px;
+}
+
 /* HEADER */
 header {
     padding: 15px 0;
@@ -61,3 +66,27 @@ header .search-bar .search-button {
     margin-left: 16px;
 }
 
+
+
+/* MAIN */
+main {
+
+    /* TEST */
+    display: flex;
+}
+/* MOVIES SECTION */
+.movies-section {
+    width: 50%;
+}
+
+/* TV SHOWS SECTION */
+.tv-shows-section {
+    width: 50%;
+    border-left: 1px solid black;
+}
+
+/* TEST */
+.poster {
+    height: 40px;
+    width: 30px;
+}
