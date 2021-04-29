@@ -7,6 +7,57 @@
 
 /* COMMON */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: red;
+    font-family: 'Roboto', sans-serif;    
 }
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+/* HEADER */
+header {
+    padding: 15px 0;
+    background-color: #221f1f;
+    color: white;
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #e50914;
+}
+
+/* Search Bar */
+header .search-bar label {
+    position: absolute;
+    top: 999%;
+    right: 999%;
+}
+
+header .search-bar #search {
+    padding: 5px;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    vertical-align: middle;
+}
+
+header .search-bar .search-button {
+    font-size: 12px;
+    padding: 8px 20px;
+    border-width: 0;
+    color: white;
+    background-color: #e50914;
+    border-radius: 2px;
+    vertical-align: middle;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-left: 16px;
+}
+

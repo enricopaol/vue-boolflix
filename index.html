@@ -16,9 +16,46 @@
 </head>
 <body>
     
+    <!-- App -->
     <div id="root">
+
+        <!-- HEADER -->
+        <header>
+            <div class="container">
+
+                <!-- Logo -->
+                <div class="logo">
+                    Boolflix
+                </div>
+    
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <label for="search">Ricerca: </label>
+                    <input id="search" type="text" placeholder="Cerca..." v-model="searchQuery">
+                    <button class="search-button" @click="searchMovie()">Cerca</button>
+                </div>
+
+            </div>            
+        </header>
+        <!-- FINE HEADER -->
+
+        <!-- MAIN -->
+        <main>
+            <h1>Film Risultati</h1>
+            <ul>
+                <li v-for="movie in resultMovies">
+                    Titolo: {{movie.title}} <br>
+                    Titolo Originale: {{movie.original_title}} <br>
+                    Lingua: {{movie.original_language}} <br>
+                    Voto: {{movie.vote_average}}
+                    <hr>
+                </li>
+            </ul>
+        </main>
+        <!-- FINE MAIN -->
         
     </div>
+    <!-- End App -->
     
 
     <script src="js/script.js"></script>
