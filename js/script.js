@@ -24,6 +24,7 @@ var app = new Vue(
 
         },
         methods: {
+            // To search movies
             searchMovie() {
                 axios
                     .get('https://api.themoviedb.org/3/search/movie', {
@@ -38,6 +39,7 @@ var app = new Vue(
                         this.resultMovies = result;                                                
                     })                    
             },
+            // To search tv shows
             searchTvShows() {
                 axios
                     .get('https://api.themoviedb.org/3/search/tv', {
@@ -52,14 +54,21 @@ var app = new Vue(
                         this.resultTvShows = result;                                                                        
                     }) 
             },
+            // To get the vote of a movie/tvShow:
+            // Return a number representing the manipouled vote
             getVote(element) {
                 let roundedVote = Math.ceil(element.vote_average / 2)
                 return roundedVote
             },
+            // To get the year of a film/Tv Show:
+            // element --> The movie or Tv Show
+            // property --> a string representing the key of the property representing the year of release.
+            // Return: a string representing the year of release
             getYear(element, property) {
                 let year = element[property].slice(0, 4);
                 return year;
-            },            
+            },   
+            // To get the cast of a movie/tv show         
             getCredits(element, type) {  
                 let id = element.id;
                 axios
@@ -71,9 +80,12 @@ var app = new Vue(
                     .then((response) => {
                         const cast = response.data.cast;
                         cast.splice(5, cast.length - 5);
+
+
                         this.cast = cast;                        
                     })                                        
             },
+            // To open and close the credits container
             toggleCredits() {
                 console.log('cliccami')
                 this.openCredits = !this.openCredits;

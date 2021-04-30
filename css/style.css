@@ -111,11 +111,11 @@ main .container ul li:first-child {
     margin-left: 20px;
 }
 main .container ul li:last-child {
-    margin-right: 0px;
+    margin-right: 20px;
 }
 main .container ul li:hover {
     transform: scale(1.1);
-    z-index: 0;
+    z-index: 1;
 }
 main .container ul li:hover .poster {
     opacity: 0.3;
@@ -146,8 +146,6 @@ main .container ul li .cast {
     background-color: #e50914;
     border-radius: 2px;
 }
-
-
 
 main .container ul li .vote {
     display: flex;
