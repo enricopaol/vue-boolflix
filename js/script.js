@@ -15,7 +15,8 @@ var app = new Vue(
                 de: 'https://lipis.github.io/flag-icon-css/flags/4x3/de.svg',
                 da: 'https://lipis.github.io/flag-icon-css/flags/4x3/dk.svg',
                 sv: 'https://lipis.github.io/flag-icon-css/flags/4x3/se.svg',
-                tr: 'https://lipis.github.io/flag-icon-css/flags/4x3/tr.svg'                           
+                tr: 'https://lipis.github.io/flag-icon-css/flags/4x3/tr.svg',
+                ja: 'https://lipis.github.io/flag-icon-css/flags/4x3/jp.svg'                          
             }            
 
         },
@@ -47,6 +48,10 @@ var app = new Vue(
                         const result = response.data.results;
                         this.resultTvShows = result;                                                                        
                     }) 
+            },
+            getVote(element) {
+                let roundedVote = Math.ceil(element.vote_average / 2)
+                return roundedVote
             }            
         }        
     }
