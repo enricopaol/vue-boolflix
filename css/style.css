@@ -217,6 +217,9 @@ main .container ul li .poster {
 .actors-container .single-actor {
     padding-right: 15px;
 }
+.actors-container .single-actor:last-child {
+    padding-right: 0;
+}
 .credits .actors-container .single-actor img {
     width: 150px;
     height: auto;
