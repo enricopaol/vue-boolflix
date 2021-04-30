@@ -83,29 +83,7 @@
                             </div>
 
                             <!-- Button Cast -->
-                            <button class="cast" @click="getCredits(movie, 'movie'); toggleCredits()">Guarda cast</button>
-
-                            <!-- Credits -->
-                            <div class="credits-container" :class="{active : openCredits}">
-                                <div class="credits">
-                                    <i @click="toggleCredits()" class="fas fa-times"></i>
-
-                                    <div class="title">Cast:</div>
-
-                                    <div class="actors-container">
-                                        <!-- Single Actor -->
-                                        <div v-if="actor.profile_path != null" 
-                                            class="single-actor" 
-                                            v-for="actor in cast" 
-                                            class="single-actor"
-                                        >
-                                            <img :src="`https://image.tmdb.org/t/p/w342/${actor.profile_path}`" alt="">
-                                            {{actor.name}}
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
+                            <button class="cast" @click="getCredits(movie, 'movie'); toggleCredits()">Guarda cast</button>                            
                             
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="">
                         
@@ -154,32 +132,40 @@
                             </div>
 
                             <!-- Button Cast -->
-                            <button class="cast" @click="getCredits(show, 'tv'); toggleCredits()">Guarda cast</button>
-
-                            <!-- Credits -->
-                            <div class="credits-container" :class="{active : openCredits}">
-                                <div class="credits">
-                                    <i @click="toggleCredits()" class="fas fa-times"></i>
-
-                                    <div class="title">Cast:</div>
-
-                                    <div class="actors-container">
-                                        <!-- Single Actor -->
-                                        <div v-if="actor.profile_path != null" class="single-actor" v-for="actor in cast" class="single-actor">
-                                            <img :src="`https://image.tmdb.org/t/p/w342/${actor.profile_path}`" alt="">
-                                            {{actor.name}}
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
+                            <button class="cast" @click="getCredits(show, 'tv'); toggleCredits()">Guarda cast</button>                            
 
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">
 
-                        </li>
+                        </li>                        
                     </ul>
                 </section>
                 <!-- End Tv Shows Section -->
+
+                <!-- Credits -->
+                <div class="credits-container" :class="{active : openCredits}">
+                    <div class="credits">
+                        <i @click="toggleCredits()" class="fas fa-times"></i>
+
+                        <div class="title">Cast:</div>
+
+                        <div v-if="cast.length > 0" class="actors-container">
+
+                            <!-- Single Actor -->
+                            <div v-if="actor.profile_path != null" 
+                                class="single-actor" 
+                                v-for="actor in cast" 
+                            >
+                                <img :src="`https://image.tmdb.org/t/p/w342/${actor.profile_path}`" alt="">
+                                {{actor.name}}
+                            </div>
+
+                        </div>
+
+                        <div v-else class="title">Non è presente il cast per questo elemento.</div>
+                        
+                    </div>
+                </div>
+
             </div>
                         
         </main>

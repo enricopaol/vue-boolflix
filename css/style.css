@@ -25,6 +25,12 @@ h2 {
     font-size: 24px;
 }
 
+.title {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: white;
+}
+
 /* HEADER */
 header {
     padding: 15px 0;
@@ -122,11 +128,6 @@ main .container ul li:hover .poster {
     z-index: -1;
 }
 
-main .container ul li .title {
-    font-size: 25px;
-    margin-bottom: 10px;
-}
-
 main .container ul li .original-title,
 main .container ul li .language,
 main .container ul li .vote,
@@ -173,7 +174,7 @@ main .container ul li .poster {
     transition: opacity .32s ease;
 }
 
-main .container ul li .credits-container {
+.credits-container {
     height: 100vh;
     width: 100%;
     position: fixed;
@@ -182,13 +183,12 @@ main .container ul li .credits-container {
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.05);
     display: none;
-    cursor:unset;
 }
-main .container ul li .credits-container.active {
+.credits-container.active {
     display: block;
 }
 
-main .container ul li .credits-container.active .credits {
+.credits-container.active .credits {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -205,12 +205,13 @@ main .container ul li .credits-container.active .credits {
     right: 40px;
     padding: 5px 9px;
     border: 1px solid white;
+    cursor: pointer;
 
 }
 
 .credits-container.active .credits .actors-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .credits .actors-container .single-actor img {
     width: 150px;
