@@ -54,12 +54,16 @@
                                 {{movie.title}}
                             </div>
                             <div class="original-title">
-                                Titolo Originale: {{movie.original_title}}
+                                Titolo Originale: {{movie.original_title}},
+                                <span class="year">{{getYear(movie, 'release_date')}}</span>
                             </div>
                             <div class="language">
                                 Lang:
                                 <img class="flag-img" :src="flagImages[movie.original_language]" alt="">
+                                <!-- {{movie.original_language}} -->                                                                
                             </div>
+
+                            
 
                             <div class="vote">
                                 <i v-for="star in getVote(movie)" class="fas fa-star"></i> 
@@ -78,7 +82,7 @@
                             
                         </li>
                     </ul>
-                </section>
+                </section>                
                 <!-- End Section Movies -->
 
                 <!-- Tv Shows Section -->
@@ -91,7 +95,8 @@
                                 {{show.name}}
                             </div>      
                             <div class="original-title">
-                                Titolo Originale: {{show.original_name}}
+                                Titolo Originale: {{show.original_name}},
+                                <span class="year">{{getYear(show, 'first_air_date')}}</span>
                             </div>                       
                             <div class="language">
                                 Lang: 
@@ -110,7 +115,7 @@
                             </div>
 
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">
-                            
+
                         </li>
                     </ul>
                 </section>

@@ -16,7 +16,8 @@ var app = new Vue(
                 da: 'https://lipis.github.io/flag-icon-css/flags/4x3/dk.svg',
                 sv: 'https://lipis.github.io/flag-icon-css/flags/4x3/se.svg',
                 tr: 'https://lipis.github.io/flag-icon-css/flags/4x3/tr.svg',
-                ja: 'https://lipis.github.io/flag-icon-css/flags/4x3/jp.svg'                          
+                ja: 'https://lipis.github.io/flag-icon-css/flags/4x3/jp.svg',
+                el: 'https://lipis.github.io/flag-icon-css/flags/4x3/gr.svg'                          
             }            
 
         },
@@ -52,6 +53,10 @@ var app = new Vue(
             getVote(element) {
                 let roundedVote = Math.ceil(element.vote_average / 2)
                 return roundedVote
+            },
+            getYear(element, property) {
+                let year = element[property].slice(0, 4);
+                return year;
             }            
         }
           
