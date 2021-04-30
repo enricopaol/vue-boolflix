@@ -70,8 +70,6 @@ var app = new Vue(
             },   
             // To get the cast of a movie/tv show         
             getCredits(element, type) {  
-                // console.log(element)
-                // console.log(type)
                 let id = element.id;
                 axios
                     .get(`https://api.themoviedb.org/3/${type}/${id}/credits`, {
@@ -82,13 +80,11 @@ var app = new Vue(
                     .then((response) => {
                         const cast = response.data.cast;
                         cast.splice(5, cast.length - 5);
-                        this.cast = cast;       
-                        console.log(this.cast)                 
+                        this.cast = cast;                      
                     })                                        
             },
             // To open and close the credits container
             toggleCredits() {
-                console.log('cliccami')
                 this.openCredits = !this.openCredits;
             }            
         }
