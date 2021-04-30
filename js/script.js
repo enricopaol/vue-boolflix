@@ -53,6 +53,7 @@ var app = new Vue(
                 let roundedVote = Math.ceil(element.vote_average / 2)
                 return roundedVote
             }            
-        }        
+        }
+          
     }
 );

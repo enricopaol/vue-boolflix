@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolflix</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
     
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
@@ -45,16 +43,34 @@
         <main>
 
             <div class="container">
+
                 <!-- Section Movies -->
                 <section v-if="resultMovies.length > 0" class="movies-section">
-                    <h2>Film Risultati</h2>       
+                    <h2>Film</h2>       
                     <ul>
                         <!-- Single List Item -->
                         <li v-for="movie in resultMovies" v-if="movie.poster_path != null">
-                            Titolo: {{movie.title}} <br>
-                            Titolo Originale: {{movie.original_title}} <br>
-                            Lingua: <img class="flag-img" :src="flagImages[movie.original_language]" alt=""> {{movie.original_language}} <br>
-                            Voto: {{getVote(movie)}} <br>
+                            <div class="title">
+                                {{movie.title}}
+                            </div>
+                            <div class="original-title">
+                                Titolo Originale: {{movie.original_title}}
+                            </div>
+                            <div class="language">
+                                Lang:
+                                <img class="flag-img" :src="flagImages[movie.original_language]" alt="">
+                            </div>
+
+                            <div class="vote">
+                                <i v-for="star in getVote(movie)" class="fas fa-star"></i> 
+                                <i v-for="star in (5 - getVote(movie))" class="far fa-star"></i>
+                            </div>    
+                            
+                            <div class="overview">
+                                <div class="overview-text">
+                                    {{movie.overview}}
+                                </div>                                
+                            </div>
                             
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="">
                         
@@ -67,32 +83,50 @@
 
                 <!-- Tv Shows Section -->
                 <section v-if="resultTvShows.length > 0" class="tv-shows-section">
-                    <h2>Serie Tv Risultati</h2>       
+                    <h2>Serie Tv</h2>       
                     <ul>
                         <!-- Single List Item -->
                         <li v-for="show in resultTvShows" v-if="show.poster_path != null">
-                            Titolo: {{show.name}} <br>
-                            Titolo Originale: {{show.original_name}} <br>
-                            Lingua: <img class="flag-img" :src="flagImages[show.original_language]" alt=""> {{show.original_language}} <br>
+                            <div class="title">
+                                {{show.name}}
+                            </div>      
+                            <div class="original-title">
+                                Titolo Originale: {{show.original_name}}
+                            </div>                       
+                            <div class="language">
+                                Lang: 
+                                <img class="flag-img" :src="flagImages[show.original_language]" alt="">
+                            </div>
                             
-                            Voto: <i v-for="star in getVote(show)" class="fas fa-star"></i> 
-                                <i v-for="star in (5 - getVote(show))" class="far fa-star"></i> <br>                                
+                            <div class="vote">
+                                <i v-for="star in getVote(show)" class="fas fa-star"></i> 
+                                <i v-for="star in (5 - getVote(show))" class="far fa-star"></i>
+                            </div>                               
                             
+                            <div class="overview">
+                                <div class="overview-text">
+                                    {{show.overview}}
+                                </div>                                
+                            </div>
+
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">
-                            <hr>
+                            
                         </li>
                     </ul>
                 </section>
                 <!-- End Tv Shows Section -->
             </div>
-            
+                        
         </main>
         <!-- FINE MAIN -->
+
+        
         
     </div>
+
+    
     <!-- End App -->
     
-
-    <script src="js/script.js"></script>
+    <script src="js/script.js"></script>    
 </body>
 </html>
