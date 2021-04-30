@@ -53,27 +53,48 @@
                             <div class="title">
                                 {{movie.title}}
                             </div>
-                            <div class="original-title">
+
+                            <div v-if="movie.original_title != movie.title" class="original-title">
                                 Titolo Originale: {{movie.original_title}},
                                 <span class="year">{{getYear(movie, 'release_date')}}</span>
                             </div>
+                            <div v-else class="year">{{getYear(movie, 'release_date')}}</div>
+
                             <div class="language">
                                 Lang:
                                 <img class="flag-img" :src="flagImages[movie.original_language]" alt="">
                                 <!-- {{movie.original_language}} -->                                                                
-                            </div>
-
-                            
+                            </div>                            
 
                             <div class="vote">
                                 <i v-for="star in getVote(movie)" class="fas fa-star"></i> 
                                 <i v-for="star in (5 - getVote(movie))" class="far fa-star"></i>
-                            </div>    
+                            </div>                                
                             
                             <div class="overview">
                                 <div class="overview-text">
                                     {{movie.overview}}
                                 </div>                                
+                            </div>
+
+                            <button class="cast" @click="getCredits(movie, 'movie'); toggleCredits()">Guarda cast</button>
+
+                            <!-- Credits -->
+                            <div class="credits-container" :class="{active : openCredits}">
+                                <div class="credits">
+                                    <i @click="toggleCredits()" class="fas fa-times"></i>
+
+                                    <div class="title">Cast:</div>
+
+                                    <div class="actors-container">
+                                        <!-- Single Actor -->
+                                        <div v-if="actor.profile_path != null" class="single-actor" v-for="actor in cast" class="single-actor">
+                                            <img :src="`https://image.tmdb.org/t/p/w342/${actor.profile_path}`" alt="">
+                                            {{actor.name}}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
                             
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="">
@@ -93,25 +114,48 @@
                         <li v-for="show in resultTvShows" v-if="show.poster_path != null">
                             <div class="title">
                                 {{show.name}}
-                            </div>      
-                            <div class="original-title">
+                            </div>    
+
+                            <div v-if="show.original_name != show.name" class="original-title">
                                 Titolo Originale: {{show.original_name}},
                                 <span class="year">{{getYear(show, 'first_air_date')}}</span>
-                            </div>                       
+                            </div>  
+                            <div v-else class="year">{{getYear(show, 'first_air_date')}}</div>
+
                             <div class="language">
                                 Lang: 
                                 <img class="flag-img" :src="flagImages[show.original_language]" alt="">
-                            </div>
+                            </div>                            
                             
                             <div class="vote">
                                 <i v-for="star in getVote(show)" class="fas fa-star"></i> 
                                 <i v-for="star in (5 - getVote(show))" class="far fa-star"></i>
-                            </div>                               
+                            </div>                                                         
                             
                             <div class="overview">
                                 <div class="overview-text">
                                     {{show.overview}}
                                 </div>                                
+                            </div>
+
+                            <button class="cast" @click="getCredits(show, 'tv'); toggleCredits()">Guarda cast</button>
+
+                            <!-- Credits -->
+                            <div class="credits-container" :class="{active : openCredits}">
+                                <div class="credits">
+                                    <i @click="toggleCredits()" class="fas fa-times"></i>
+
+                                    <div class="title">Cast:</div>
+
+                                    <div class="actors-container">
+                                        <!-- Single Actor -->
+                                        <div v-if="actor.profile_path != null" class="single-actor" v-for="actor in cast" class="single-actor">
+                                            <img :src="`https://image.tmdb.org/t/p/w342/${actor.profile_path}`" alt="">
+                                            {{actor.name}}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
 
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">

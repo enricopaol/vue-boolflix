@@ -6,6 +6,8 @@ var app = new Vue(
             searchQuery: '',
             resultMovies: [],
             resultTvShows: [],
+            cast: [],
+            openCredits: false,
             flagImages: {
                 en: 'https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg',
                 it: 'https://lipis.github.io/flag-icon-css/flags/4x3/it.svg',
@@ -57,6 +59,24 @@ var app = new Vue(
             getYear(element, property) {
                 let year = element[property].slice(0, 4);
                 return year;
+            },            
+            getCredits(element, type) {  
+                let id = element.id;
+                axios
+                    .get(`https://api.themoviedb.org/3/${type}/${id}/credits`, {
+                        params: {
+                            api_key: this.api_key
+                        }
+                    })
+                    .then((response) => {
+                        const cast = response.data.cast;
+                        cast.splice(5, cast.length - 5);
+                        this.cast = cast;                        
+                    })                                        
+            },
+            toggleCredits() {
+                console.log('cliccami')
+                this.openCredits = !this.openCredits;
             }            
         }
           

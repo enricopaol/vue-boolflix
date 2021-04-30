@@ -115,7 +115,7 @@ main .container ul li:last-child {
 }
 main .container ul li:hover {
     transform: scale(1.1);
-    z-index: 999;
+    z-index: 0;
 }
 main .container ul li:hover .poster {
     opacity: 0.3;
@@ -129,9 +129,25 @@ main .container ul li .title {
 
 main .container ul li .original-title,
 main .container ul li .language,
-main .container ul li .vote {
+main .container ul li .vote,
+main .container ul li .cast,
+main .container ul li .year {
     margin-bottom: 5px;
 }
+
+main .container ul li .cast {
+    width: 100%;
+    margin: auto;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 8px 20px;
+    border-width: 0;
+    color: white;
+    background-color: #e50914;
+    border-radius: 2px;
+}
+
+
 
 main .container ul li .vote {
     display: flex;
@@ -143,6 +159,7 @@ main .container ul li .vote i {
 main .container ul li .overview {
     flex-grow: 1;
     overflow-y: auto;
+    margin-bottom: 5px;
 }
 .overview-text {
     height: 100%;
@@ -158,6 +175,52 @@ main .container ul li .poster {
     transition: opacity .32s ease;
 }
 
+main .container ul li .credits-container {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.05);
+    display: none;
+    cursor:unset;
+}
+main .container ul li .credits-container.active {
+    display: block;
+}
+
+main .container ul li .credits-container.active .credits {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-color: #000;
+    padding: 40px;
+}
+
+.credits-container.active .credits i {
+    font-size: 18px;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    padding: 5px 9px;
+    border: 1px solid white;
+
+}
+
+.credits-container.active .credits .actors-container {
+    display: flex;
+    justify-content: space-between;
+}
+.credits .actors-container .single-actor img {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
 /* MOVIES SECTION */
 .movies-section {
     padding-top: 50px;
@@ -171,8 +234,5 @@ main .container ul li .poster {
 }
 
 
-.splide {
-    /* visibility: visible; */
-    color: white;
-}
+
 
