@@ -66,8 +66,14 @@
                             <!-- Lang -->
                             <div class="language">
                                 Lang:
-                                <img class="flag-img" :src="flagImages[movie.original_language]" alt="">                                                             
-                            </div>                            
+                                <img class="flag-img" :src="flagImages[movie.original_language]" alt="">                                                                   
+                            </div> 
+                            
+                            <!-- Genre -->
+                            <div v-if="movie.genre_ids.length > 0" class="genre">
+                                Genere:
+                                {{getGenre(movie.genre_ids)}}
+                            </div>
 
                             <!-- Vote -->
                             <div class="vote">
@@ -116,7 +122,13 @@
                             <div class="language">
                                 Lang: 
                                 <img class="flag-img" :src="flagImages[show.original_language]" alt="">
-                            </div>                            
+                            </div>  
+                            
+                            <!-- Genre -->
+                            <div v-if="show.genre_ids.length > 0" class="genre">
+                                Genere:
+                                {{getGenre(show.genre_ids)}}
+                            </div>
                             
                             <!-- Vote -->
                             <div class="vote">

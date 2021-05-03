@@ -8,6 +8,7 @@ var app = new Vue(
             resultTvShows: [],
             cast: [],
             openCredits: false,
+            genres: [],
             flagImages: {
                 en: 'https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg',
                 it: 'https://lipis.github.io/flag-icon-css/flags/4x3/it.svg',
@@ -86,7 +87,33 @@ var app = new Vue(
             // To open and close the credits container
             toggleCredits() {
                 this.openCredits = !this.openCredits;
+            },
+            // To get the genre for each movie/tv-show.
+            // Take an array of Ids of the genres and returns a string representing the corresponding genres
+            getGenre(arrayIds) {
+                let newArrayGenres = [];
+                arrayIds.forEach((element) => {
+                    this.genres.forEach((obj) => {
+                        if (element === obj.id) {                            
+                            newArrayGenres.push(obj.name);
+                        }
+                    })
+                })                
+                return newArrayGenres.join(', ');
             }            
+        },
+        mounted() {
+            // To get the list of movie genres
+            axios 
+                .get('https://api.themoviedb.org/3/genre/movie/list', {
+                    params: {
+                        api_key: this.api_key,
+                        language: 'it-IT'
+                    }
+                })
+                .then((response) => {                    
+                    this.genres = response.data.genres;
+                })
         }
           
     }

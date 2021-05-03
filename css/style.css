@@ -132,7 +132,8 @@ main .container ul li .original-title,
 main .container ul li .language,
 main .container ul li .vote,
 main .container ul li .cast,
-main .container ul li .year {
+main .container ul li .year,
+main .container ul li .genre {
     margin-bottom: 5px;
 }
 
