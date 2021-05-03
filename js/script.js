@@ -86,8 +86,11 @@ var app = new Vue(
                     })
                     .then((response) => {
                         const cast = response.data.cast;
-                        cast.splice(5, cast.length - 5);
-                        this.cast = cast;                      
+                        let filteredCast = cast.filter((element) => {
+                            return element.profile_path != null
+                        })
+                        filteredCast.splice(5, cast.length - 5);
+                        this.cast = filteredCast;                      
                     })                                        
             },
             // To open and close the credits container
