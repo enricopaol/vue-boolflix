@@ -39,7 +39,7 @@
                     <div class="genre-search">
                         <!-- Filter Genres -->
                         <label for="filter-genres">Filtra per genere:</label>
-                        <select id="filter-genres" v-model="selectedGenre">
+                        <select id="filter-genres" v-model="selectedGenre" @change="filterMovieByGenre(); filterTvShowByGenre()">
                             <option value="">All</option>
                             <option v-for="genre in genres" :value="genre.id">{{genre.name}}</option>
                         </select>
@@ -59,11 +59,11 @@
             <div class="container">
 
                 <!-- Section Movies -->
-                <section v-if="resultMovies.length > 0" class="movies-section">
+                <section v-if="filteredMovies.length > 0" class="movies-section">
                     <h2>Film</h2>       
                     <ul>
                         <!-- Single List Item -->
-                        <li v-for="movie in resultMovies" v-if="movie.poster_path != null && filterElement(movie)">
+                        <li v-for="movie in filteredMovies">
 
                             <!-- Title -->
                             <div class="title">
@@ -115,11 +115,11 @@
                 <!-- End Section Movies -->
 
                 <!-- Tv Shows Section -->
-                <section v-if="resultTvShows.length > 0" class="tv-shows-section">
+                <section v-if="filteredTvShows.length > 0" class="tv-shows-section">
                     <h2>Serie Tv</h2>       
                     <ul>
                         <!-- Single List Item -->
-                        <li v-for="show in resultTvShows" v-if="show.poster_path != null && filterElement(show)">
+                        <li v-for="show in filteredTvShows">
                             <!-- Title -->
                             <div class="title">
                                 {{show.name}}
@@ -166,6 +166,11 @@
                     </ul>
                 </section>
                 <!-- End Tv Shows Section -->
+
+                <!-- No Match Found -->
+                <div v-if="noMatchFound" class="no-match">
+                    Non sono stati trovati risultati corrispondenti alla tua ricerca.
+                </div>
 
                 <!-- Credits -->
                 <div class="credits-container" :class="{active : openCredits}">

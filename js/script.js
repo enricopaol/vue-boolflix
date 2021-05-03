@@ -6,10 +6,13 @@ var app = new Vue(
             searchQuery: '',
             resultMovies: [],
             resultTvShows: [],
+            filteredMovies: [],
+            filteredTvShows: [],
             cast: [],
             openCredits: false,
             genres: [],
-            selectedGenre: '',
+            selectedGenre: '', 
+            noMatchFound: false,           
             flagImages: {
                 en: 'https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg',
                 it: 'https://lipis.github.io/flag-icon-css/flags/4x3/it.svg',
@@ -38,8 +41,9 @@ var app = new Vue(
                     })
                     .then((response) => {
                         const result = response.data.results;
-                        this.resultMovies = result;                                                
-                    })                    
+                        this.resultMovies = result;     
+                        this.filterMovieByGenre();                                         
+                    })                                      
             },
             // To search tv shows
             searchTvShows() {
@@ -53,7 +57,8 @@ var app = new Vue(
                     })
                     .then((response) => {
                         const result = response.data.results;
-                        this.resultTvShows = result;                                                                        
+                        this.resultTvShows = result; 
+                        this.filterTvShowByGenre();                                                                                            
                     }) 
             },
             // To get the vote of a movie/tvShow:
@@ -102,14 +107,35 @@ var app = new Vue(
                 })                
                 return newArrayGenres.join(', ');
             },
-            filterElement(element) {
-                let isRightGenre = false
-                element.genre_ids.forEach((id) => {
-                    if(id === this.selectedGenre || this.selectedGenre === '') {                        
-                        isRightGenre = true;                                                
+            filterMovieByGenre() {                        
+                let thisGenre = this.selectedGenre;     
+                this.filteredMovies = this.resultMovies.filter((element) => {
+                    if(thisGenre == '' && element.release_date && element.poster_path != null) {
+                        return true;                        
+                    } else if (element.genre_ids.includes(thisGenre) && element.release_date && element.poster_path != null) {                        
+                        return element;
                     }                    
-                })   
-                return isRightGenre            
+                })
+                this.findMatch();                     
+            },
+            filterTvShowByGenre() {
+                let thisGenre = this.selectedGenre;
+                this.filteredTvShows = this.resultTvShows.filter((element) => {
+                    if(thisGenre == '' && element.first_air_date && element.poster_path != null) {
+                        return true;                        
+                    } else if (element.genre_ids.includes(thisGenre) && element.first_air_date && element.poster_path != null) {                        
+                        return element;
+                    }                     
+                }) 
+                this.findMatch();                
+            },
+            // To show and hide message when there's no result from the search
+            findMatch() {
+                if(this.filteredMovies.length == 0 && this.filteredTvShows.length == 0) {
+                    this.noMatchFound = true;
+                } else {
+                    this.noMatchFound = false;
+                }
             }            
         },
         mounted() {
