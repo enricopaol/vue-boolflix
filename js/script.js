@@ -9,6 +9,7 @@ var app = new Vue(
             cast: [],
             openCredits: false,
             genres: [],
+            selectedGenre: '',
             flagImages: {
                 en: 'https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg',
                 it: 'https://lipis.github.io/flag-icon-css/flags/4x3/it.svg',
@@ -100,6 +101,15 @@ var app = new Vue(
                     })
                 })                
                 return newArrayGenres.join(', ');
+            },
+            filterElement(element) {
+                let isRightGenre = false
+                element.genre_ids.forEach((id) => {
+                    if(id === this.selectedGenre || this.selectedGenre === '') {                        
+                        isRightGenre = true;                                                
+                    }                    
+                })   
+                return isRightGenre            
             }            
         },
         mounted() {

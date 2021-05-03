@@ -39,9 +39,9 @@
                     <div class="genre-search">
                         <!-- Filter Genres -->
                         <label for="filter-genres">Filtra per genere:</label>
-                        <select id="filter-genres">
+                        <select id="filter-genres" v-model="selectedGenre">
                             <option value="">All</option>
-                            <option value="">Avventura</option>
+                            <option v-for="genre in genres" :value="genre.id">{{genre.name}}</option>
                         </select>
                     </div>
                     
@@ -63,7 +63,7 @@
                     <h2>Film</h2>       
                     <ul>
                         <!-- Single List Item -->
-                        <li v-for="movie in resultMovies" v-if="movie.poster_path != null">
+                        <li v-for="movie in resultMovies" v-if="movie.poster_path != null && filterElement(movie)">
 
                             <!-- Title -->
                             <div class="title">
@@ -119,7 +119,7 @@
                     <h2>Serie Tv</h2>       
                     <ul>
                         <!-- Single List Item -->
-                        <li v-for="show in resultTvShows" v-if="show.poster_path != null">
+                        <li v-for="show in resultTvShows" v-if="show.poster_path != null && filterElement(show)">
                             <!-- Title -->
                             <div class="title">
                                 {{show.name}}
