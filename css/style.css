@@ -49,17 +49,28 @@ header .logo img {
 }
 
 /* Search Bar */
+header .search-bar {
+    display: flex;
+    align-items: flex-end;
+    align-content: unset;
+}
 header .search-bar label {
-    position: absolute;
-    top: 999%;
-    right: 999%;
+    display: block;
+    font-size:  14px;
 }
 
-header .search-bar #search {
+header .search-bar .query-search,
+header .search-bar .genre-search {
+    margin-left: 10px;
+}
+
+header .search-bar #search,
+header .search-bar #filter-genres {
     padding: 5px;
     outline: none;
     font-family: 'Roboto', sans-serif;
     vertical-align: middle;
+    width: 175px;
 }
 
 header .search-bar .search-button {

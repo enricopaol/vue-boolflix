@@ -30,8 +30,22 @@
     
                 <!-- Search Bar -->
                 <div class="search-bar">
-                    <label for="search">Ricerca: </label>
-                    <input id="search" type="text" placeholder="Cerca..." v-model="searchQuery" @keyup.enter="searchMovie(); searchTvShows()">
+
+                    <div class="query-search">
+                        <label for="search">Ricerca: </label>
+                        <input id="search" type="text" placeholder="Cerca..." v-model="searchQuery" @keyup.enter="searchMovie(); searchTvShows()">
+                    </div>
+                    
+                    <div class="genre-search">
+                        <!-- Filter Genres -->
+                        <label for="filter-genres">Filtra per genere:</label>
+                        <select id="filter-genres">
+                            <option value="">All</option>
+                            <option value="">Avventura</option>
+                        </select>
+                    </div>
+                    
+
                     <button class="search-button" @click="searchMovie(); searchTvShows()">Cerca</button>
                 </div>
 
