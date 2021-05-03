@@ -43,10 +43,9 @@ header .container {
     align-items: center;
 }
 
-header .logo {
-    font-size: 32px;
-    text-transform: uppercase;
-    color: #e50914;
+header .logo img {
+    height: 60px;
+    vertical-align: middle;
 }
 
 /* Search Bar */
@@ -82,7 +81,7 @@ header .search-bar .search-button {
 /* MAIN */
 main {
     background-color: #000;
-    min-height: calc( 100vh - 68px);
+    min-height: calc( 100vh - 90px);
 }
 
 main .container h2 {
@@ -94,7 +93,7 @@ main .container ul {
     list-style-type: none;
     display: flex;
     overflow-x: auto;
-    margin-left: -20px;
+    margin-left: -20px;    
 }
 
 /* Single List Item */
@@ -127,6 +126,7 @@ main .container ul li:hover .poster {
     opacity: 0.3;
     z-index: -1;
 }
+
 
 main .container ul li .original-title,
 main .container ul li .language,
