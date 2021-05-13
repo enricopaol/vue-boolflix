@@ -80,7 +80,8 @@
                             <!-- Lang -->
                             <div class="language">
                                 Lang:
-                                <img class="flag-img" :src="flagImages[movie.original_language]" alt="">                                                                   
+                                <img v-if="flagImages.hasOwnProperty(movie.original_language)" class="flag-img" :src="flagImages[movie.original_language]" alt="">                                                                   
+                                <span v-else>{{movie.original_language}}</span>
                             </div> 
                             
                             <!-- Genre -->
@@ -103,7 +104,7 @@
                             </div>
 
                             <!-- Button Cast -->
-                            <button class="cast" @click="getCredits(movie, 'movie'); toggleCredits()">Guarda cast</button>                            
+                            <button class="cast" @click="getCredits(movie, 'movie')">Guarda cast</button>                            
                             
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="">
                         
@@ -135,7 +136,8 @@
                             <!-- Lang -->
                             <div class="language">
                                 Lang: 
-                                <img class="flag-img" :src="flagImages[show.original_language]" alt="">
+                                <img v-if="flagImages.hasOwnProperty(show.original_language)" class="flag-img" :src="flagImages[show.original_language]" alt="">
+                                <span v-else>{{show.original_language}}</span>
                             </div>  
                             
                             <!-- Genre -->
@@ -158,7 +160,7 @@
                             </div>
 
                             <!-- Button Cast -->
-                            <button class="cast" @click="getCredits(show, 'tv'); toggleCredits()">Guarda cast</button>                            
+                            <button class="cast" @click="getCredits(show, 'tv')">Guarda cast</button>                            
 
                             <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">
 
@@ -175,7 +177,7 @@
                 <!-- Credits -->
                 <div class="credits-container" :class="{active : openCredits}">
                     <div class="credits">
-                        <i @click="toggleCredits()" class="fas fa-times"></i>
+                        <i @click="closeCredits()" class="fas fa-times"></i>
 
                         <div class="title">Cast:</div>
 

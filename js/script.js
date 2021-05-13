@@ -90,12 +90,16 @@ var app = new Vue(
                             return element.profile_path != null
                         })
                         filteredCast.splice(5, cast.length - 5);
-                        this.cast = filteredCast;                      
+                        this.cast = filteredCast;   
+                        
+                        // I open the credits
+                        this.openCredits = true;
                     })                                        
             },
-            // To open and close the credits container
-            toggleCredits() {
-                this.openCredits = !this.openCredits;
+            // To close the credits container
+            closeCredits() {
+                this.openCredits = false;
+                this.cast = [];
             },
             // To get the genre for each movie/tv-show.
             // Take an array of Ids of the genres and returns a string representing the corresponding genres

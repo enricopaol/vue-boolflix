@@ -153,6 +153,10 @@ main .container ul li .genre {
     margin-bottom: 5px;
 }
 
+main .container ul li .language span {
+    text-transform: uppercase;
+}
+
 main .container ul li .cast {
     width: 100%;
     margin: auto;
